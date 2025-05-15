@@ -14,113 +14,40 @@
   />
 </svelte:head>
 
-<main>
-  <img src="/gbtb_logo.avif" alt="Gardens by the Bay logo" class="logo" />
+<main
+  class="max-w-[480px] mx-auto px-4 py-8 font-['Inter'] text-[#222] bg-white"
+>
+  <img
+    src="/gbtb_logo.png"
+    alt="Gardens by the Bay logo"
+    class="w-40 mt-16 mb-6 mx-auto"
+  />
 
-  <div class="content">
-    <h1 class="title">Join our sustainability efforts</h1>
-    <p class="subtitle">
+  <div class="text-center mb-8">
+    <h1 class="text-xl font-semibold mb-4">Join our sustainability efforts</h1>
+    <p class="text-xs text-[#444] leading-relaxed font-normal">
       Lorem ipsum dolor sit amet consectetur. Et tincidunt bibendum pulvinar
       diam. Purus lobortis lectus commodo id viverra pellentesque consectetur
       tellus sed. Lectus nibh pellentesque.
     </p>
   </div>
 
-  <div class="input-section">
-    <p>How can we address you?</p>
-    <input type="text" placeholder="Name you'd like us to use" />
-    <button on:click={onclick} aria-label="Submit"> Begin your journey </button>
+  <div class="w-full text-left mb-10">
+    <p class="mb-2 font-normal">How can we address you?</p>
+    <input
+      type="text"
+      placeholder="Name you'd like us to use"
+      class="w-full h-12 px-3 py-2 rounded-xl text-xs bg-gray-100 mb-4 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+    />
+    <button
+      on:click={onclick}
+      on:touchstart
+      aria-label="Submit"
+      class="w-full h-12 bg-[#4f4f4f] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150"
+    >
+      Begin your journey
+    </button>
   </div>
 
   <SlidingPanel />
 </main>
-
-<style>
-  :global(body) {
-    font-family: "Inter", sans-serif;
-    margin: 0;
-    padding: 0.5rem;
-    background: white;
-    color: #222;
-  }
-
-  main {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .logo {
-    width: 160px;
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .content {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .subtitle {
-    font-size: 0.5rem;
-    color: #444;
-    line-height: 1.5;
-    font-weight: 400;
-  }
-
-  .input-section {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 2rem;
-  }
-
-  .input-section p {
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-  }
-
-  input[type="text"] {
-    height: 3rem;
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-    border: 0px solid #ccc;
-    font-size: 0.5rem;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    background-color: #f3f3f3;
-  }
-
-  button {
-    height: 3rem;
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.75rem;
-    background-color: #4f4f4f;
-    color: white;
-    font-size: 1rem;
-    font-weight: 400;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  button:hover {
-    background-color: #000;
-  }
-</style>

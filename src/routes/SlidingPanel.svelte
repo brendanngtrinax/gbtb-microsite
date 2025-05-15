@@ -1,126 +1,91 @@
-<script>
+<script lang="ts">
   let posts = [
     {
-      profilePic: "/profile1.jpg",
+      profilePic: 0,
       name: "John Doe",
       pledge: "I pledge to reduce plastic waste.",
-      bg: "/bg1.jpg",
+      bg: 0,
     },
     {
-      profilePic: "/profile2.jpg",
+      profilePic: 1,
       name: "Jane Smith",
       pledge: "I pledge to plant more trees.",
-      bg: "/bg2.jpg",
+      bg: 1,
     },
     {
-      profilePic: "/profile3.jpg",
+      profilePic: 2,
       name: "Alice Johnson",
       pledge: "I pledge to conserve water.",
-      bg: "/bg3.jpg",
+      bg: 2,
+    },
+    {
+      profilePic: 0,
+      name: "Bob Brown",
+      pledge: "I pledge to use public transport.",
+      bg: 0,
+    },
+    {
+      profilePic: 1,
+      name: "Charlie Davis",
+      pledge: "I pledge to recycle more.",
+      bg: 1,
+    },
+    {
+      profilePic: 2,
+      name: "Diana Evans",
+      pledge: "I pledge to support local farmers.",
+      bg: 2,
     },
   ];
+
+  let profilePics = ["/profile.png", "/profile.png", "/profile.png"];
+  let backgrounds = ["/bg.png", "/bg.png", "/bg.png"];
 </script>
 
-<div class="sliding-panel">
-  <h2 class="sliding-panel-title">Featured posts that will inspire you</h2>
-  {#snippet panel(profilePicChoice, name, pledge, backgroundChoice)}
-    <div class="panel-card">
-      <div class="panel-content">
-        <img class="avatar" src={profilePicChoice} alt="Profile" />
-        <div class="text-content">
-          <p class="name">{name}</p>
-          <p class="pledge">{pledge}</p>
+<div class="w-full text-left">
+  <h2 class="text-xs font-bold mb-4">Featured posts that will inspire you</h2>
+
+  {#snippet panel(
+    profilePicChoice: number,
+    name: string,
+    pledge: string,
+    backgroundChoice: number
+  )}
+    <div
+      class="relative flex-shrink-0 w-[250px] h-[140px] bg-white rounded-3xl border border-gray-300 p-4 mr-4 overflow-hidden"
+    >
+      <div class="relative z-10 flex items-center">
+        <img
+          class="w-10 h-10 rounded-full object-cover bg-gray-300 mr-3"
+          src={profilePics[profilePicChoice]}
+          alt="Profile"
+        />
+        <div class="flex flex-col">
+          <p class="text-sm font-bold">{name}</p>
+          <p class="text-xs text-gray-700 mt-1">{pledge}</p>
         </div>
       </div>
-      <img
-        class="background-pattern"
-        src={backgroundChoice}
-        alt=""
-        aria-hidden="true"
-      />
+
+      <div
+        class="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex items-center justify-center w-60"
+      >
+        <img
+          class="opacity-60 z-0 pointer-events-none"
+          src={backgrounds[backgroundChoice]}
+          alt="background of gbtb"
+          aria-hidden="true"
+        />
+      </div>
     </div>
   {/snippet}
-  <div class="panel-scroll">
-    {#each posts as post}
-      {@render panel(post.profilePic, post.name, post.pledge, post.bg)}
-    {/each}
+
+  <div class="overflow-x-auto px-4 pb-4">
+    <div class="grid grid-flow-col auto-cols-max grid-rows-2 gap-4">
+      {#each posts as post, i}
+        <div class={i % 2 === 1 ? "translate-x-1/2" : ""}>
+          {@render panel(post.profilePic, post.name, post.pledge, post.bg)}
+        </div>
+      {/each}
+    </div>
   </div>
 </div>
-
-<style>
-  .sliding-panel {
-    width: 100%;
-    text-align: left;
-  }
-  .sliding-panel-title {
-    font-size: 0.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  .panel-card {
-    border: 1px solid #ccc;
-    border-radius: 1rem;
-    padding: 1rem;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 250px;
-    height: 140px;
-    box-sizing: border-box;
-    overflow: hidden;
-    position: relative;
-    margin-right: 1rem;
-    flex-shrink: 0;
-  }
-
-  .panel-content {
-    display: flex;
-    align-items: center;
-    z-index: 1;
-  }
-
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    background: #ddd;
-    object-fit: cover;
-    margin-right: 0.75rem;
-  }
-
-  .text-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .name {
-    font-weight: 700;
-    margin: 0;
-    font-size: 0.9rem;
-  }
-
-  .pledge {
-    margin: 0.25rem 0 0 0;
-    font-size: 0.85rem;
-    color: #333;
-  }
-
-  .background-pattern {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.6;
-  }
-  .panel-scroll {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    margin-left: 1rem;
-  }
-</style>
