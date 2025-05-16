@@ -1,10 +1,6 @@
 <script>
+  import { name } from "../shared.js";
   import SlidingPanel from "./SlidingPanel.svelte";
-
-  function onclick() {
-    // Placeholder — trigger sliding panel or form logic here
-    console.log("Button clicked");
-  }
 </script>
 
 <svelte:head>
@@ -38,15 +34,16 @@
       type="text"
       placeholder="Name you'd like us to use"
       class="w-full h-12 px-3 py-2 rounded-xl text-xs bg-gray-100 mb-4 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+      bind:value={$name}
     />
-    <button
-      on:click={onclick}
-      on:touchstart
+    <a
+      on:click={() => console.log("name:", $name)}
+      href="/fork"
+      class="w-full h-12 bg-[#4f4f4f] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150 text-center flex items-center justify-center"
       aria-label="Submit"
-      class="w-full h-12 bg-[#4f4f4f] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150"
     >
       Begin your journey
-    </button>
+    </a>
   </div>
 
   <SlidingPanel />
