@@ -1,17 +1,35 @@
 <script lang="ts">
   import { BackButton, NextButton } from "$lib";
   import { EnvironmentCategories } from "$lib/types";
-  import { environmentCategory } from "../../shared";
+  import { environmentCategory } from "$lib/shared";
+  let urlPath = "";
 
   let cards = [
-    { imagePath: "/undefined.png", description: "Water Conservation" },
-    { imagePath: "/undefined.png", description: "Energy Conservation" },
+    {
+      imagePath: "/undefined.png",
+      description: "Water Conservation",
+      urlPath: "water",
+    },
+    {
+      imagePath: "/undefined.png",
+      description: "Energy Conservation",
+      urlPath: "energy",
+    },
     {
       imagePath: "/undefined.png",
       description: "Waste Reduction and Recycling",
+      urlPath: "waste",
     },
-    { imagePath: "/undefined.png", description: "Sustainable Living" },
-    { imagePath: "/undefined.png", description: "Environment Care" },
+    {
+      imagePath: "/undefined.png",
+      description: "Sustainable Living",
+      urlPath: "sustainable",
+    },
+    {
+      imagePath: "/undefined.png",
+      description: "Environment Care",
+      urlPath: "environment",
+    },
   ];
 </script>
 
@@ -21,10 +39,13 @@
     Create your pledge you wish to convey about your sustainability thoughts.
   </p>
 
-  <div class="grid grid-cols-2 gap-6 justify-center mx-5">
+  <div class="grid grid-cols-2 gap-4 justify-center mx-5">
     {#each cards as card, index}
       <button
-        on:click={() => ($environmentCategory = index)}
+        on:click={() => {
+          $environmentCategory = index;
+          urlPath = card.urlPath;
+        }}
         class={`aspect-square flex flex-col items-center justify-center rounded-[24px] bg-[#F3F3F3] transition
           ${
             $environmentCategory === index
@@ -33,7 +54,6 @@
           }
           hover:border-gray-400
         `}
-        style="min-width: 120px;"
       >
         <div
           class="w-10 h-10 rounded-full bg-gray-300 mb-3 flex items-center justify-center"
@@ -48,7 +68,7 @@
   <div class="flex justify-between mt-12 max-w-md mx-auto">
     <BackButton />
     <NextButton
-      urlPath="/path1/template"
+      urlPath="/path1/{urlPath}"
       disabledCondition={$environmentCategory === EnvironmentCategories.NULL}
     />
   </div>

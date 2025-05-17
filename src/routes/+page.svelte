@@ -1,6 +1,12 @@
 <script>
-  import { name } from "../shared.js";
+  import { onMount } from "svelte";
   import SlidingPanel from "./SlidingPanel.svelte";
+  let name = "";
+  onMount(() => {
+    if (name) {
+      name = localStorage.getItem("name") || "";
+    }
+  });
 </script>
 
 <svelte:head>
@@ -34,10 +40,10 @@
       type="text"
       placeholder="Name you'd like us to use"
       class="w-full h-12 px-3 py-2 rounded-xl text-xs bg-gray-100 mb-4 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
-      bind:value={$name}
+      bind:value={name}
     />
     <a
-      on:click={() => console.log("name:", $name)}
+      on:click={() => localStorage.setItem("name", name)}
       href="/fork"
       class="w-full h-12 bg-[#4f4f4f] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150 text-center flex items-center justify-center"
       aria-label="Submit"
