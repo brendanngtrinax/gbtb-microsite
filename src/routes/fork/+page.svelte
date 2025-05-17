@@ -3,12 +3,12 @@
 
   const cards = [
     {
-      imagePath: "/undefined.png",
+      imagePath: "/pledge_icon.png",
       url: "/path1",
       description: "Pledge my contribution towards sustainability",
     },
     {
-      imagePath: "/undefined.png",
+      imagePath: "/sustainability_icon.png",
       url: "/path2",
       description: "Share my sustainability experience at the Gardens",
     },
@@ -22,10 +22,10 @@
 </script>
 
 <main class="max-w-md mx-auto px-4 py-8 text-center mt-20">
-  <h1 class="text-2xl font-semibold mb-4">
+  <h1 class="text-2xl text-white font-semibold mb-4">
     What would you like to share with us today?
   </h1>
-  <p class="text-xs text-gray-600 mb-8">
+  <p class="text-xs text-[#E7AEF6] mb-8">
     Lorem ipsum dolor sit amet consectetur. Et tincidunt bibendum pulvinar diam.
     Purus lobortis lectus commodo id viverra.
   </p>
@@ -34,10 +34,10 @@
     {#each cards as card, index}
       <button
         on:click={() => (selected = index)}
-        class={`w-36 h-36 rounded-2xl flex flex-col items-center justify-center p-4 text-center transition bg-[#F3F3F3] ${
+        class={`w-36 h-36 rounded-2xl flex flex-col items-center justify-center p-4 text-center transition] ${
           selected === index
-            ? "border-2 border-[#949494]"
-            : "border border-[#F3F3F3]"
+            ? "border-2 border-[#949494] bg-[#EDFCE2]"
+            : "border border-[#F3F3F3] bg-[#F3F3F3]"
         }`}
       >
         <div
@@ -56,9 +56,9 @@
     class={`w-[90%] h-12 text-white text-base font-normal rounded-xl transition ${
       selected === null
         ? "bg-[#949494] cursor-not-allowed"
-        : "bg-[#4f4f4f] hover:bg-black active:opacity-80 active:scale-95"
+        : "bg-[#9021DA] hover:bg-black active:opacity-80 active:scale-95"
     }`}
   >
-    Start pledging
+    Let's Explore
   </button>
 </main>

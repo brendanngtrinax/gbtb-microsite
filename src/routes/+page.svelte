@@ -16,21 +16,18 @@
   />
 </svelte:head>
 
-<main
-  class="max-w-[480px] mx-auto px-4 py-8 font-['Inter'] text-[#222] bg-white"
->
+<main class="px-4 font-['Inter'] text-white">
   <img
     src="/gbtb_logo.png"
     alt="Gardens by the Bay logo"
-    class="w-40 mt-16 mb-6 mx-auto"
+    class="w-20 mt-8 mb-6 mx-auto"
   />
 
   <div class="text-center mb-8">
     <h1 class="text-xl font-semibold mb-4">Join our sustainability efforts</h1>
-    <p class="text-xs text-[#444] leading-relaxed font-normal">
-      Lorem ipsum dolor sit amet consectetur. Et tincidunt bibendum pulvinar
-      diam. Purus lobortis lectus commodo id viverra pellentesque consectetur
-      tellus sed. Lectus nibh pellentesque.
+    <p class="text-xs text-[#E7AEF6] leading-relaxed font-normal">
+      Pledge one small change you have made towards an eco-driven lifestyle or
+      share a sustainable moment at Gardens by the Bay that inspired you!
     </p>
   </div>
 
@@ -39,16 +36,16 @@
     <input
       type="text"
       placeholder="Name you'd like us to use"
-      class="w-full h-12 px-3 py-2 rounded-xl text-xs bg-gray-100 mb-4 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+      class="w-full h-12 px-3 py-2 rounded-xl text-xs text-[#414141] bg-gray-100 mb-4 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
       bind:value={name}
     />
     <a
       on:click={() => localStorage.setItem("name", name)}
       href="/fork"
-      class="w-full h-12 bg-[#4f4f4f] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150 text-center flex items-center justify-center"
+      class="w-full h-12 bg-[#9021DA] text-white text-base font-normal rounded-xl hover:bg-black active:opacity-80 active:scale-95 transition duration-150 text-center flex items-center justify-center"
       aria-label="Submit"
     >
-      Begin your journey
+      Let My Sustainability Sprout
     </a>
   </div>
 
