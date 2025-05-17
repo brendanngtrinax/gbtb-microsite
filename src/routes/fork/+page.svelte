@@ -41,9 +41,9 @@
         }`}
       >
         <div
-          class="w-10 h-10 rounded-full bg-gray-300 mb-2 flex items-center justify-center"
+          class="w-10 h-10 rounded-full mb-2 flex items-center justify-center"
         >
-          <img src={card.imagePath} alt="icon" class="w-6 h-6" />
+          <img src={card.imagePath} alt="icon" class="w-10 h-10" />
         </div>
         <p class="text-xxs font-semibold">{card.description}</p>
       </button>
