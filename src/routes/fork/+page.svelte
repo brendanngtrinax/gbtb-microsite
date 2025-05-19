@@ -3,12 +3,12 @@
 
   const cards = [
     {
-      imagePath: "/pledge_icon.png",
+      imagePath: "/paths/pledge_icon.png",
       url: "/path1",
       description: "Pledge my contribution towards sustainability",
     },
     {
-      imagePath: "/sustainability_icon.png",
+      imagePath: "/paths/sustainability_icon.png",
       url: "/path2",
       description: "Share my sustainability experience at the Gardens",
     },
@@ -26,8 +26,8 @@
     What would you like to share with us today?
   </h1>
   <p class="text-xs text-[#E7AEF6] mb-8">
-    Lorem ipsum dolor sit amet consectetur. Et tincidunt bibendum pulvinar diam.
-    Purus lobortis lectus commodo id viverra.
+    Make a difference at Gardens by the Bay and decide how you want to share
+    your journey.
   </p>
 
   <div class="flex justify-center gap-4 mb-6">

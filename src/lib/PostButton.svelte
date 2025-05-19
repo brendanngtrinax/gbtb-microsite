@@ -1,11 +1,10 @@
 <script lang="ts">
-  let { urlPath, disabledCondition, onclick = () => {} } = $props();
+  let { disabledCondition, onclick = () => {} } = $props();
 </script>
 
 <button
   onclick={() => {
     onclick();
-    window.location.href = urlPath;
   }}
   disabled={disabledCondition}
   class="w-38 h-12 rounded-lg text-white font-norma transition flex items-center justify-center gap-1
@@ -14,7 +13,7 @@
     : 'bg-[#9021DA] active:opacity-80 active:scale-95'}"
   aria-label="Go next"
 >
-  <p class="pl-2">Next</p>
+  <p class="pl-2">Post Now</p>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"

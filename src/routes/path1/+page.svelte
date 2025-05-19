@@ -6,27 +6,27 @@
 
   let cards = [
     {
-      imagePath: "/water.png",
+      imagePath: "/topics/water.png",
       description: "Water Conservation",
       urlPath: "water",
     },
     {
-      imagePath: "/energy.png",
+      imagePath: "/topics/energy.png",
       description: "Energy Conservation",
       urlPath: "energy",
     },
     {
-      imagePath: "/waste.png",
+      imagePath: "/topics/waste.png",
       description: "Waste Reduction and Recycling",
       urlPath: "waste",
     },
     {
-      imagePath: "/sustainable.png",
+      imagePath: "/topics/sustainable.png",
       description: "Sustainable Living",
       urlPath: "sustainable",
     },
     {
-      imagePath: "/environment.png",
+      imagePath: "/topics/environment.png",
       description: "Environment Care",
       urlPath: "environment",
     },

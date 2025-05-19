@@ -59,7 +59,7 @@
     bind:innerHTML={livePledgeHtml}
     class="w-full max-w-3xl p-4 rounded-lg text-xl font-semibold text-white"
   ></div>
-  <div class="absolute top-80">
+  <div class="absolute top-80 left-1/2 transform -translate-x-1/2 w-[90%]">
     <PledgeDropdown {pledgeTemplate} bind:selectedAnswers />
   </div>
 
@@ -67,8 +67,14 @@
     <div class="w-full justify-center flex gap-2">
       <BackButton />
       <NextButton
-        urlPath={"/nothing"}
+        urlPath={"/path1/" + topic + "/" + index + "/create"}
         disabledCondition={!selectedAnswers.every((answer) => answer !== null)}
+        onclick={() => {
+          localStorage.setItem(
+            "selectedAnswers",
+            JSON.stringify(selectedAnswers)
+          );
+        }}
       />
     </div>
   </div>
