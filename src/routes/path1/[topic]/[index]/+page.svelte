@@ -7,6 +7,7 @@
     NextButton,
     PledgeDropdown,
   } from "$lib";
+  import Navbar from "$lib/navbar.svelte";
   let topic = page.params.topic;
   let index = page.params.index;
   let pledgeTemplate = pledgeTemplates[topic][parseInt(index)];
@@ -45,6 +46,7 @@
 </script>
 
 <main class="min-h-screenflex flex-col items-center px-6 py-8 text-white">
+  <Navbar stepNumber={2} />
   <div class="flex gap-1 text-[#CECECE] text-xxs">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4" viewBox="0 0 24 24"
       ><path

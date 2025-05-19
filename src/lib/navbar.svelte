@@ -1,11 +1,15 @@
 <script>
-  let { children } = $props();
+  import { getContext } from "svelte";
+  let { stepNumber } = $props();
 </script>
 
-<div class="w-full flex justify-evenly items-center p-8 mb-4 text-[#530F66]">
+<div class="w-full flex justify-evenly items-center p-8 mb-4">
   <div class="relative flex flex-col items-center">
     <div
-      class="w-10 h-10 rounded-full bg-[#FBC7FF] flex items-center justify-center"
+      class="w-10 h-10 rounded-full flex items-center justify-center border border-[#FBC7FF] {stepNumber >=
+      1
+        ? 'bg-[#FBC7FF] text-[#713D80]'
+        : 'text-[#FBC7FF]'}"
     >
       <svg
         width="24"
@@ -19,14 +23,21 @@
         />
       </svg>
     </div>
-    <p class="absolute top-12 text-xxs text-center text-white w-max">
+    <p
+      class="absolute top-12 text-xxs text-center w-max {stepNumber >= 1
+        ? 'text-white'
+        : 'text-[#713D806]'}"
+    >
       Select a category
     </p>
   </div>
-  <div class="border border-[#FBC7FF] w-12"></div>
+  <div class="border w-12 {stepNumber >= 1 ? 'border-[#FBC7FF]' : ''}"></div>
   <div class="relative flex flex-col items-center">
     <div
-      class="w-10 h-10 rounded-full bg-[#FBC7FF] flex items-center justify-center"
+      class="w-10 h-10 rounded-full flex items-center justify-center border border-[#FBC7FF] {stepNumber >=
+      2
+        ? 'bg-[#FBC7FF] text-[#713D80]'
+        : 'text-[#FBC7FF]'}"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -39,14 +50,25 @@
         /></svg
       >
     </div>
-    <p class="absolute top-12 text-xxs text-center text-white w-max">
+    <p
+      class="absolute top-12 text-xxs text-cente w-max {stepNumber >= 2
+        ? 'text-white'
+        : 'text-[#713D80]'}"
+    >
       Create your pledge
     </p>
   </div>
-  <div class="border border-[#FBC7FF] w-12"></div>
+  <div
+    class="border w-12 {stepNumber >= 2
+      ? 'border-[#FBC7FF]'
+      : 'border-[#713D80]'}"
+  ></div>
   <div class="relative flex flex-col items-center">
     <div
-      class="w-10 h-10 rounded-full bg-[#FBC7FF] flex items-center justify-center"
+      class="w-10 h-10 rounded-full flex items-center justify-center border border-[#FBC7FF] {stepNumber >=
+      3
+        ? 'bg-[#FBC7FF] text-[#713D80]'
+        : 'text-[#FBC7FF]'}"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -61,10 +83,12 @@
         /></svg
       >
     </div>
-    <p class="absolute top-12 text-xxs text-center text-white w-max">
+    <p
+      class="absolute top-12 text-xxs text-center w-max {stepNumber >= 3
+        ? 'text-white'
+        : 'text-[#713D80]'}"
+    >
       Customise and submit
     </p>
   </div>
 </div>
-
-{@render children()}
