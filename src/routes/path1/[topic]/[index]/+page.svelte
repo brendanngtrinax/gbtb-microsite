@@ -65,7 +65,7 @@
     <PledgeDropdown {pledgeTemplate} bind:selectedAnswers />
   </div>
 
-  <div class="absolute bottom-40 left-1/2 transform -translate-x-1/2">
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
     <div class="w-full justify-center flex gap-2">
       <BackButton />
       <NextButton
