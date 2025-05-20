@@ -6,7 +6,7 @@
   import Card from "$lib/Card.svelte";
   import PostButton from "$lib/PostButton.svelte";
   import Navbar from "$lib/navbar.svelte";
-  import type { Writable } from "svelte/store";
+  import { name, selectedAnswers } from "$lib/stores";
   import { goto } from "$app/navigation";
 
   let topic = page.params.topic;
@@ -16,19 +16,14 @@
   let total =
     selectedPledge.template.length + selectedPledge.templateAnswers.length;
 
-  let selectedAnswers = [];
-  let name = "";
   let pledge = "";
   onMount(() => {
-    selectedAnswers = JSON.parse(
-      localStorage.getItem("selectedAnswers") || "[]"
-    );
     for (let i = 0; i < total; i++) {
       let j = Math.floor(i / 2);
       if (i % 2 === 0) {
         pledge += selectedPledge.template[j];
       } else {
-        pledge += selectedPledge.templateAnswers[j][selectedAnswers[j]];
+        pledge += selectedPledge.templateAnswers[j][$selectedAnswers[j]];
       }
       if (i < total - 1) {
         pledge += " ";
@@ -36,7 +31,6 @@
         pledge += ".";
       }
     }
-    name = localStorage.getItem("name") || "";
   });
 
   let selectedAvatar = 0;
@@ -69,7 +63,7 @@
 
   let isPosted = false;
   function onclick() {
-    console.log("name", name);
+    console.log("name", $name);
     console.log("pledge", pledge);
     console.log("avatar", selectedAvatar);
     console.log("background", selectedBackground);
@@ -146,7 +140,7 @@
         <li class="snap-center">
           <button>
             <Card
-              {name}
+              name={$name}
               {pledge}
               avatarIndex={selectedAvatar}
               bgIndex={index}

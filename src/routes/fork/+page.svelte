@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
   let selected: number | null = null;
 
   const cards = [
@@ -16,7 +18,7 @@
 
   function handleSubmit() {
     if (selected !== null) {
-      window.location.href = cards[selected].url;
+      goto(cards[selected].url);
     }
   }
 </script>

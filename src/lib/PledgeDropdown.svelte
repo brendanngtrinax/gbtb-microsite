@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { fade, slide } from "svelte/transition";
-  let { pledgeTemplate, selectedAnswers = $bindable() } = $props();
+  import { selectedAnswers, answerWidths } from "$lib/stores";
+  let { pledgeTemplate } = $props();
+
   let template = pledgeTemplate.template;
   let answerSize = pledgeTemplate.templateAnswersSize;
   let answers = pledgeTemplate.templateAnswers;
@@ -12,17 +14,12 @@
   }
 
   function selectAnswer(index: number, answerIndex: number) {
-    selectedAnswers[index] = answerIndex;
+    $selectedAnswers[index] = answerIndex;
   }
-  let answerWidths = $state<string[]>([]);
-  onMount(() => {
-    answerWidths = JSON.parse(localStorage.getItem("answerWidths") || "[]");
-    console.log("answerWidths", answerWidths);
-  });
 </script>
 
 <div>
-  {#if answerWidths.length != 0}
+  {#if $answerWidths.length != 0}
     <div
       class="flex text-white text-xxs justify-end mb-3"
       in:fade={{ delay: 300, duration: 200 }}
@@ -30,7 +27,7 @@
       <button
         class="flex gap-1"
         onclick={() => {
-          selectedAnswers = Array(template.length).fill(null);
+          $selectedAnswers = Array(template.length).fill(null);
           choiceIndex = -1;
         }}
       >
@@ -60,15 +57,15 @@
             <button
               aria-label="pledge options"
               class="flex justify-between items-center border-b-1 h-full"
-              style="width: {answerWidths[Math.floor(i / 2)]}px"
+              style="width: {$answerWidths[Math.floor(i / 2)]}px"
               onclick={() => toggleDropdown(Math.floor(i / 2))}
             >
               <p class="truncate">
                 {answers[Math.floor(i / 2)][
-                  selectedAnswers[Math.floor(i / 2)]
+                  $selectedAnswers[Math.floor(i / 2)]
                 ] || ""}
               </p>
-              {#if selectedAnswers[Math.floor(i / 2)] === null}
+              {#if $selectedAnswers[Math.floor(i / 2)] === null}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="w-2.5"
@@ -105,7 +102,7 @@
                       : 'justify-start'}"
                   >
                     <button
-                      class="text-left px-3 py-1 mb-2 rounded-2xl border-1 min-h-8 border-white {selectedAnswers[
+                      class="text-left px-3 py-1 mb-2 rounded-2xl border-1 min-h-8 border-white {$selectedAnswers[
                         Math.floor(i / 2)
                       ] === j
                         ? 'bg-white text-black'

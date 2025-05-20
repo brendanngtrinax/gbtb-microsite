@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BackButton, NextButton } from "$lib";
   import { EnvironmentCategories } from "$lib/types";
-  import { environmentCategory } from "$lib/shared";
+  import { environmentCategory } from "$lib/stores";
   import Navbar from "$lib/navbar.svelte";
 
   let urlPath = "";

@@ -4,6 +4,7 @@
   import { page } from "$app/stores";
   import PledgeButton from "$lib/PledgeButton.svelte";
   import Navbar from "$lib/navbar.svelte";
+  import { answerWidths } from "$lib/stores";
 
   let topic = $page.params.topic;
   let index: number | null = null;
@@ -24,15 +25,14 @@
         isButtonDisabled={false}
         onclick={() => (index = i)}
         refCallback={(el: HTMLElement) => {
-          let answerWidths: string[] = [];
+          $answerWidths = [];
           let answerWidthElements = el.querySelectorAll(".answer-width");
           answerWidthElements.forEach((element, j) => {
-            answerWidths.push(
+            $answerWidths.push(
               Math.floor(element.getBoundingClientRect().width).toString()
             );
           });
-          console.log("answerWidths", answerWidths);
-          localStorage.setItem("answerWidths", JSON.stringify(answerWidths));
+          console.log("answerWidths", $answerWidths);
         }}
       />
     {/each}

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { page } from "$app/state";
   import {
     pledgeTemplates,
@@ -8,13 +7,13 @@
     PledgeDropdown,
   } from "$lib";
   import Navbar from "$lib/navbar.svelte";
+  import { selectedAnswers, answerWidths } from "$lib/stores";
   let topic = page.params.topic;
   let index = page.params.index;
   let pledgeTemplate = pledgeTemplates[topic][parseInt(index)];
 
-  let selectedAnswers = $state(
-    Array(pledgeTemplate.templateAnswers.length).fill(null)
-  );
+  $selectedAnswers = Array(pledgeTemplate.templateAnswers.length).fill(null);
+
   let livePledgeHtml: string = $derived.by(() => {
     let result = "";
     let total =
@@ -25,14 +24,14 @@
           '<span class="text-white">' +
           pledgeTemplate.template[Math.floor(i / 2)];
       } else {
-        if (selectedAnswers[Math.floor(i / 2)] === null) {
+        if ($selectedAnswers[Math.floor(i / 2)] === null) {
           result += "...";
           break;
         }
         result +=
           '<span class="text-[#FF79A0]">' +
           pledgeTemplate.templateAnswers[Math.floor(i / 2)][
-            selectedAnswers[Math.floor(i / 2)]
+            $selectedAnswers[Math.floor(i / 2)]
           ];
       }
       if (i === total - 1) {
@@ -62,7 +61,7 @@
     class="w-full max-w-3xl p-4 rounded-lg text-xl font-semibold text-white"
   ></div>
   <div class="absolute top-80 left-1/2 transform -translate-x-1/2 w-[90%]">
-    <PledgeDropdown {pledgeTemplate} bind:selectedAnswers />
+    <PledgeDropdown {pledgeTemplate} />
   </div>
 
   <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
@@ -70,13 +69,7 @@
       <BackButton />
       <NextButton
         urlPath={"/path1/" + topic + "/" + index + "/create"}
-        disabledCondition={!selectedAnswers.every((answer) => answer !== null)}
-        onclick={() => {
-          localStorage.setItem(
-            "selectedAnswers",
-            JSON.stringify(selectedAnswers)
-          );
-        }}
+        disabledCondition={!$selectedAnswers.every((answer) => answer !== null)}
       />
     </div>
   </div>

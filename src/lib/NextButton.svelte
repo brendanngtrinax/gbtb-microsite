@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
   let { urlPath, disabledCondition, onclick = () => {} } = $props();
 </script>
 
 <button
   onclick={() => {
     onclick();
-    window.location.href = urlPath;
+    goto(urlPath);
   }}
   disabled={disabledCondition}
   class="w-38 h-12 rounded-lg text-white font-norma transition flex items-center justify-center gap-1
