@@ -2,7 +2,7 @@
   import { BackButton, NextButton } from "$lib";
   import { EnvironmentCategories } from "$lib/types";
   import { environmentCategory } from "$lib/stores";
-  import Navbar from "$lib/navbar.svelte";
+  import Navbar from "$lib/navbarpath1.svelte";
 
   let urlPath = "";
 
@@ -45,11 +45,11 @@
   <div class="grid grid-cols-2 gap-4 justify-center mx-5">
     {#each topics as topic, index}
       <button
-        on:click={() => {
+        onclick={() => {
           $environmentCategory = index;
           urlPath = topic.urlPath;
         }}
-        class={`aspect-square flex flex-col items-center justify-center rounded-[24px] transition
+        class={`relative aspect-square flex flex-col items-center justify-center rounded-[24px] transition
           ${
             $environmentCategory === index
               ? "border-2 border-[#949494] bg-[#EDFCE2]"
@@ -58,6 +58,17 @@
           hover:border-gray-400
         `}
       >
+        {#if $environmentCategory === index}
+          <svg
+            class="absolute top-2 right-2 w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            ><path
+              fill="#530F66"
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"
+            /></svg
+          >
+        {/if}
         <div
           class="w-10 h-10 rounded-full mb-3 flex items-center justify-center"
         >

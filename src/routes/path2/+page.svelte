@@ -1,6 +1,6 @@
 <script lang="ts">
   import { BackButton, NextButton } from "$lib";
-  import Navbar from "$lib/navbar.svelte";
+  import Navbar from "$lib/navbarpath2.svelte";
   const topics = [
     {
       imagePath: "/photos/energyandwater.png",
@@ -43,22 +43,15 @@
     {#each topics as topic, index}
       <li class="relative">
         {#if topicSelected === index}
-          <!-- Checkmark Circle Overlay -->
-          <div
-            class="absolute top-2 right-2 z-10 w-5 h-5 rounded-full bg-[#530F66] border border-[#E7AEF6] flex items-center justify-center text-white"
+          <svg
+            class="absolute top-2 right-2 w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            ><path
+              fill="#530F66"
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8z"
+            /></svg
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              ><path
-                fill="currentColor"
-                fill-rule="evenodd"
-                d="m6 10l-2 2l6 6L20 8l-2-2l-8 8z"
-              /></svg
-            >
-          </div>
         {/if}
         <button
           class="flex items-center w-full text-black no-underline rounded-2xl p-2 shadow transition {topicSelected ===
@@ -72,7 +65,7 @@
             alt={topic.description}
             class="w-18 h-18 rounded-xl mr-4 object-cover"
           />
-          <p class="font-bold text-sm m-0">{topic.description}</p>
+          <p class="font-bold text-left text-sm m-0">{topic.description}</p>
         </button>
       </li>
     {/each}

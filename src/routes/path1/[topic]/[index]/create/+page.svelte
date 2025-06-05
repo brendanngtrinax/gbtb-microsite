@@ -5,7 +5,7 @@
   import { avatarImgPaths, backgroundImgPaths } from "$lib/shared";
   import Card from "$lib/Card.svelte";
   import PostButton from "$lib/PostButton.svelte";
-  import Navbar from "$lib/navbar.svelte";
+  import Navbar from "$lib/navbarpath1.svelte";
   import { name, selectedAnswers } from "$lib/stores";
   import { goto } from "$app/navigation";
 
@@ -74,7 +74,7 @@
   }
 </script>
 
-<main class="bg-[#50046B] min-h-screen px-4 py-6">
+<main class="min-h-screen px-4 py-6">
   <Navbar stepNumber={3} />
   <div class="w-full flex flex-col items-center mb-8">
     <h1 class="text-2xl text-white font-semibold mb-4">
@@ -89,7 +89,7 @@
   <!-- Avatar Selection -->
   <div class="mb-8">
     <h2 class="text-xs text-white mb-2">Select your avatar</h2>
-    <ul class="flex gap-3 overflow-x-auto py-2">
+    <ul class="flex gap-3 overflow-x-auto py-2 remove-scrollbar">
       {#each avatarImgPaths as avatarImgPath, index}
         <li class="shrink-0 relative">
           {#if selectedAvatar === index}
@@ -134,7 +134,7 @@
     <ul
       bind:this={scrollContainer}
       onscroll={handleScroll}
-      class="flex gap-1 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pt-2 pb-2"
+      class="flex gap-1 overflow-x-auto snap-x snap-mandatory remove-scrollbar scroll-smooth scroll-pt-2 pb-2"
     >
       {#each backgroundImgPaths as backgroundImgPath, index}
         <li class="snap-center">
@@ -225,3 +225,13 @@
     </div>
   {/if}
 </main>
+
+<style>
+  .remove-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .remove-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>
